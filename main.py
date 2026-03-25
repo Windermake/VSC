@@ -1,7 +1,6 @@
 from ultralytics import YOLO
 import cv2
 
-# Загружаем модель YOLOv8 (nano — быстро работает)
 model = YOLO("yolov8n.pt")
 
 cap = cv2.VideoCapture(1)
@@ -14,7 +13,6 @@ while cap.isOpened():
     # Детекция
     results = model(frame)[0]
 
-    # Прорисовка bbox
     for box in results.boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
         conf = float(box.conf[0])
